@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>瞑想タイマー付き動画</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    #timer {
+      font-size: 2em;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <h1>5分間の瞑想タイマー</h1>
+
+  <!-- YouTube動画埋め込み -->
+  <div>
+    <iframe width="560" height="315"
+      src="https://www.youtube.com/embed/PZDqMqKyhNo?autoplay=1&rel=0"
+      title="瞑想動画"
+      frameborder="0"
+      allow="autoplay; encrypted-media"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- タイマー表示 -->
+  <div id="timer">05:30</div>
+
+  <script>
+    let time = 330; // 5分30秒 = 330秒
+
+    function updateTimer() {
+      const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+      const seconds = String(time % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+      if (time > 0) {
+        time--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        // タイマー終了後、自動でGoogleフォームに遷移
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdqe-vFB4cRrsC8AEW-pkUi3I6etkwlx0B72V-virD0v48qPg/viewform";
+      }
+    }
+
+    // タイマー開始
+    updateTimer();
+  </script>
+</body>
+</html>
