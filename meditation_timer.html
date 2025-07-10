@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>瞑想タイマー</title>
+  <style>
+    body {
+      font-family: 'Helvetica Neue', sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      text-align: center;
+      padding: 60px 20px;
+    }
+
+    h1 {
+      font-size: 2em;
+      margin-bottom: 40px;
+      color: #2c3e50;
+    }
+
+    #timer {
+      font-size: 6em;
+      font-weight: bold;
+      background: #ffffff;
+      display: inline-block;
+      padding: 30px 60px;
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      color: #2c3e50;
+      letter-spacing: 0.05em;
+    }
+  </style>
+</head>
+<body>
+  <h1>5分間の瞑想タイマー</h1>
+
+  <div id="timer"></div>
+
+  <script>
+    let time = 300; // 5分00秒 = 300秒
+
+    function updateTimer() {
+      const minutes = String(Math.floor(time / 60)).padStart(2, '0');
+      const seconds = String(time % 60).padStart(2, '0');
+      document.getElementById('timer').textContent = `${minutes}:${seconds}`;
+      if (time > 0) {
+        time--;
+        setTimeout(updateTimer, 1000);
+      } else {
+        // タイマー終了後にGoogleフォームへ遷移
+        window.location.href = "https://docs.google.com/forms/d/e/1FAIpQLSdqe-vFB4cRrsC8AEW-pkUi3I6etkwlx0B72V-virD0v48qPg/viewform";
+      }
+    }
+
+    updateTimer();
+  </script>
+</body>
+</html>
